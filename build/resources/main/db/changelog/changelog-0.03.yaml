@@ -1,0 +1,9 @@
+databaseChangeLog:
+  - changeSet:
+      id: "update-rating-size"
+      author: Mikayil Shah
+      changes:
+        - modifyDataType:
+            tableName: movies
+            columnName: rating
+            newDataType: VARCHAR(10)

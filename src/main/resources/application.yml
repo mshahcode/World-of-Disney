@@ -1,0 +1,22 @@
+server:
+  port: 8443
+
+spring:
+  liquibase:
+    change-log: classpath:/db/changelog-master.yml
+
+  datasource:
+    url: jdbc:postgresql://localhost:5432/WorldofDisney
+    driver-class-name: org.postgresql.Driver
+    username: postgres
+    password: mika
+
+  servlet:
+    multipart:
+      max-file-size: 2MB
+      max-request-size: 2MB
+
+character:
+  image:
+    upload:
+      dir: C:/Users/mikac/IdeaProjects/WorldofDisney/images

@@ -1,0 +1,188 @@
+databaseChangeLog:
+  - changeSet:
+      id: 0
+      author: Mikayil Shahtakhtinski
+      changes:
+        - createTable:
+            tableName: images
+            columns:
+              - column:
+                  name: id
+                  type: BIGINT
+                  autoIncrement: true
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+                    primaryKeyName: image_pkey
+              - column:
+                  name: path
+                  type: VARCHAR(255)
+                  constraints:
+                    nullable: true
+
+  - changeSet:
+      id: 1
+      author: Mikayil Shahtakhtinski
+      changes:
+        - createTable:
+            tableName: characters
+            columns:
+              - column:
+                  name: id
+                  type: BIGINT
+                  autoIncrement: true
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+                    primaryKeyName: character_pkey
+              - column:
+                  name: name
+                  type: VARCHAR(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: age
+                  type: SMALLINT
+                  constraints:
+                    nullable: false
+              - column:
+                  name: weight
+                  type: NUMERIC(10,2)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: story
+                  type: CLOB
+                  constraints:
+                    nullable: true
+              - column:
+                  name: image_id
+                  type: BIGINT
+                  constraints:
+                    nullable: false
+                    foreignKeyName: fk_character_image
+                    references: images(id)
+
+  - changeSet:
+      id: 2
+      author: Mikayil Shahtakhtinski
+      changes:
+        - createTable:
+            tableName: movies
+            columns:
+              - column:
+                  name: id
+                  type: BIGINT
+                  autoIncrement: true
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+                    primaryKeyName: movie_pkey
+              - column:
+                  name: title
+                  type: VARCHAR(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: created_date
+                  type: DATE
+                  constraints:
+                    nullable: false
+              - column:
+                  name: rating
+                  type: VARCHAR(1)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: image_id
+                  type: BIGINT
+                  constraints:
+                    nullable: false
+                    foreignKeyName: fk_movie_image
+                    references: images(id)
+
+  - changeSet:
+      id: 3
+      author: Mikayil Shahtakhtinski
+      changes:
+        - createTable:
+            tableName: character_movie
+            columns:
+              - column:
+                  name: character_id
+                  type: BIGINT
+                  constraints:
+                    nullable: false
+                    foreignKeyName: fk_character_id
+                    references: characters(id)
+              - column:
+                  name: movie_id
+                  type: BIGINT
+                  constraints:
+                    nullable: false
+                    foreignKeyName: fk_movie_id
+                    references: movies(id)
+
+        - addPrimaryKey:
+            columnNames: character_id, movie_id
+            constraintName: character_movie_pkey
+            tableName: character_movie
+
+  - changeSet:
+      id: 4
+      author: Mikayil Shahtakhtinski
+      changes:
+        - createTable:
+            tableName: genres
+            columns:
+              - column:
+                  name: id
+                  type: BIGINT
+                  autoIncrement: true
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+                    primaryKeyName: genre_pkey
+              - column:
+                  name: name
+                  type: VARCHAR(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: image_id
+                  type: BIGINT
+                  constraints:
+                    nullable: false
+                    foreignKeyName: fk_genre_image
+                    references: images(id)
+
+        - createTable:
+            tableName: movie_genre
+            columns:
+              - column:
+                  name: movie_id
+                  type: BIGINT
+                  constraints:
+                    nullable: false
+                    foreignKeyName: fk_movie_id
+                    references: movies(id)
+              - column:
+                  name: genre_id
+                  type: BIGINT
+                  constraints:
+                    nullable: false
+                    foreignKeyName: fk_genre_id
+                    references: genres(id)
+
+        - addPrimaryKey:
+            columnNames: movie_id, genre_id
+            constraintName: movie_genre_pkey
+            tableName: movie_genre
+  - changeSet:
+      id: 5
+      author: Mikayil Shah
+      changes:
+        - modifyDataType:
+            tableName: movies
+            columnName: rating
+            newDataType: VARCHAR(5)
