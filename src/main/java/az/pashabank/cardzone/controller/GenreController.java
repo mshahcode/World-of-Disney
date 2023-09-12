@@ -1,6 +1,5 @@
 package az.pashabank.cardzone.controller;
 
-import az.pashabank.cardzone.model.dto.character.CreateCharacterDTO;
 import az.pashabank.cardzone.model.dto.genre.UpdatedGenreDTO;
 import az.pashabank.cardzone.service.GenreService;
 import lombok.RequiredArgsConstructor;
@@ -8,7 +7,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
-import javax.validation.Valid;
 import java.io.IOException;
 
 @RestController
