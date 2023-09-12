@@ -3,10 +3,10 @@ What is DisneyAPI?
 Dinsye is an easy-to-use project that helps you find your favorite characters and movies effortlessly.  
 
 **Features**  
-Character Management: Create, edit, and delete characters with images.  
+Character Management: Create, edit, and delete characters with images, filter characters   
 Genre Managemet : Create, edit and delete genres with images  
 Image management : storing images, adding image to character, genre and movie  
-Movie management : Create, edit, delete, add movie with new characters as well as images  
+Movie management : Create, edit, delete, add movie with new characters as well as images, fitler movie   
 Rating management : Rating enum with mappings  
 
 Database Migrations via liqubase  
